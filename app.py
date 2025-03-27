@@ -1,9 +1,22 @@
 import streamlit as st
 import joblib
 import numpy as np
+import gdown
 
-# Load the trained model
-rf_model = joblib.load("timelytics_rf_model.pkl")
+# Google Drive file ID
+file_id = "10eVzX0vGlTGWPp63un0w9t8iJn5QK-Jz"
+
+# Direct download link
+url = f"https://drive.google.com/uc?id={file_id}"
+
+# Download model
+gdown.download(url, "random_forest_model.pkl", quiet=False)
+
+# Load model
+rf_model = joblib.load("random_forest_model.pkl")
+
+st.write("✅ Model loaded successfully!")
+
 
 # Define mappings for categorical features
 category_mapping = {"electronics": 0, "fashion": 1, "home": 2, "toys": 3}
